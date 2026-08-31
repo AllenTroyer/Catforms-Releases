@@ -3,6 +3,27 @@
 Velopack release assets for the offline School Records client. Nothing here is source
 code; the application lives in a private repository.
 
-The client reads the newest release on this repo at launch and applies a delta package.
-See the release list for the current version. To install on a new machine, download
-`Catforms.SchoolRecords-win-Setup.exe` from the latest release.
+## Which file do I download?
+
+**A computer that has never had School Records on it — `CatformsSchoolRecords-Setup-<version>.exe`.**
+This is the one to send a school. It brings SQL Server LocalDB and the Edge WebView2
+runtime with it, installs them if they are missing, and only then installs the
+application. It is large (~600 MB) because both prerequisites travel inside it — the
+premise is a machine with no usable connection.
+
+**`Catforms.SchoolRecords-win-Setup.exe` is not that installer.** It contains the
+application alone and assumes LocalDB and WebView2 are already present. On a clean
+machine it appears to install successfully and then fails at launch with *"error: 52 -
+Unable to locate a Local Database Runtime installation"*. Use it only on a machine that
+has run School Records before.
+
+The remaining files — the `.nupkg` packages, `releases.win.json`, `RELEASES` — are for the
+updater, not for people. Installed clients read them on their own.
+
+## Updates
+
+After the first install the client updates itself from this feed, downloading a delta
+rather than the whole application. Nothing needs to be sent to a school for an update.
+
+Clients built before version 0.1.11 have no feed address compiled into them and cannot
+update themselves at all; those machines need the bootstrap installer above once, by hand.
