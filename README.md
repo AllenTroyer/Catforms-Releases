@@ -8,8 +8,10 @@ code; the application lives in a private repository.
 **A computer that has never had School Records on it — `CatformsSchoolRecords-Setup-<version>.exe`.**
 This is the one to send a school. It brings SQL Server LocalDB and the Edge WebView2
 runtime with it, installs them if they are missing, and only then installs the
-application. It is large (~600 MB) because both prerequisites travel inside it — the
-premise is a machine with no usable connection.
+application. It is large because LocalDB, the current SQL Server servicing package, and
+WebView2 travel inside it—the premise is a machine with no usable connection. The
+bootstrapper also upgrades stale SQL Server 2022 LocalDB installations before launching
+School Records.
 
 **`Catforms.SchoolRecords-win-Setup.exe` is not that installer.** It contains the
 application alone and assumes LocalDB and WebView2 are already present. On a clean
